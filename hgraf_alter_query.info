@@ -1,0 +1,6 @@
+name = Hgraf alter the views query
+description = Alters the views query.
+package = Hgraf
+core = 7.x
+dependencies[] = views
+

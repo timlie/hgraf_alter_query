@@ -1,0 +1,36 @@
+<?php
+
+/**
+ * @file
+ * Implementation of hook_views_pre_execute().
+ */
+
+function hgraf_alter_query_views_query_alter(&$view, &$query) {
+  switch($view->name) {
+    // If it's my view
+    case 'alle_bestellingen':
+      switch($view->current_display) {
+        // If it's the block on the author page
+        case 'block_1':
+          // Rewrite the query
+            $query->fields['field_datum_2_value_summary']['field'] = "DATE_FORMAT(STR_TO_DATE(field_data_field_datum_2.field_datum_2_value, '%Y-%m-%dT%T'), '%Y-W%v')";
+            //dpm($query);
+	        break;
+      }
+  }
+}
+
+/*function hgraf_alter_query_views_pre_render(&$view) {
+
+  if ($view->name='bestellingen_afhandelen') {
+dpm($view);
+    foreach($view->result as $r => $result) {
+      // do whatever you want with each "row"
+      dpm($result);
+    }
+
+  }
+
+  // other views might go here
+
+}*/
